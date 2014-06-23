@@ -1,7 +1,40 @@
-<h1>New product</h1>
+<h1>New product in the house</h1>
 
-<%= render 'form' %>
 <%= link_to 'Back', products_path %>
 
 
 <p>Find me in app/views/products/new.html.erb</p>
+
+
+<%= form_for @product do |f| %>
+<% if @product.errors.any? %>
+		<div class="error_messages"> 
+			<h2> Form is invalid</h1>
+			<ul>
+					<% for message in @product.errors.full_messages %>
+						<li> <%= message %> </li>
+					<% end %>
+			</ul>
+		 </div>
+		 <% end %>
+
+	<div class = "field">
+	  <%= f.label :name  %><br />
+	  <%= f.text_field :name%>
+	</div>
+
+	<div class = "field">
+	  <%= f.label :description  %><br />
+	  <%= f.text_area :description %>
+	</div>
+
+	<div class = "field">
+	  <%= f.label :price_in_cents %><br />
+	  <%= f.number_field :price_in_cents %>
+	</div>  
+
+
+  <div class="actions">
+  	<%= f.submit "save" %>
+  </div>
+<% end %>
